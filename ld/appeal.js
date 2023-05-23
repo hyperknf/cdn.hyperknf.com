@@ -22,13 +22,13 @@ btoa = async (str) => {
     request.open("POST", "https://requests.hyperknf.com/ld/appeal")
     request.setRequestHeader("Content-type", "application/json")
     request.send(JSON.stringify({
-        name: el[0],
-        id: el[1],
-        reason: el[2],
-        length: el[3],
-        again: el[4],
-        troll: el[5],
-        else: el[6],
+        name: inputs[0],
+        id: inputs[1],
+        reason: inputs[2],
+        length: inputs[3],
+        again: inputs[4],
+        troll: inputs[5],
+        else: inputs[6],
         time
     }))
     function wait() {
