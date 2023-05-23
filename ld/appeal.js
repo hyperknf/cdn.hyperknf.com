@@ -16,10 +16,12 @@ btoa = async (str) => {
     if (Number(inputs[1]) >= 3e18) isInvalid = true
     if (isInvalid) return Invalid()
     
+    document.querySelector(".main").innerHTML += "Sending request"
+    let pings = 0
     const request = new XMLHttpRequest()
     request.open("POST", "https://requests.hyperknf.com/ld/appeal")
     request.setRequestHeader("Content-type", "application/json")
-    await request.send(JSON.stringify({
+    request.send(JSON.stringify({
         name: el[0],
         id: el[1],
         reason: el[2],
@@ -29,6 +31,17 @@ btoa = async (str) => {
         else: el[6],
         time
     }))
+    function wait_for_response() {
+        const response_prototype = () => request.responseText
+        function ping(resolve) {
+            pings += 1
+            document.querySelector(".main").innerHTML += "Response ping " + pings
+            if (response_protoype().startsWith("{")) resolve()
+            setTimeout(ping(resolve), 200)
+        }
+        return new Promise(ping)
+    }
+    await wait_for_response()
     const response = JSON.parse(request.responseText)
     if (response.type != "success") return document.querySelector(".main").innerHTML += `<br><br>Error:<br>${request.responseText}`
     localStorage.response = request.responseText
