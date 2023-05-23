@@ -16,7 +16,7 @@ btoa = async (str) => {
     if (Number(inputs[1]) >= 3e18) isInvalid = true
     if (isInvalid) return Invalid()
     
-    document.querySelector(".main").innerHTML += "Sending request"
+    document.querySelector(".main").innerHTML += "<br>Sending request"
     let pings = 0
     const request = new XMLHttpRequest()
     request.open("POST", "https://requests.hyperknf.com/ld/appeal")
@@ -35,8 +35,8 @@ btoa = async (str) => {
         const response_prototype = () => request.responseText
         function ping(resolve) {
             pings += 1
-            document.querySelector(".main").innerHTML += "Response ping " + pings
-            if (response_protoype().startsWith("{")) resolve()
+            document.querySelector(".main").innerHTML += "<br>Response ping " + pings
+            if (response_prototype().startsWith("{")) resolve()
             setTimeout(ping(resolve), 200)
         }
         return new Promise(ping)
