@@ -33,9 +33,9 @@ btoa = async (str) => {
     }))
     function wait() {
         pings += 1
-        document.querySelector(".main").innerHTML += `Response ping ${pings}`
+        document.querySelector(".main").innerHTML += `<br>Response ping ${pings}`
         if ((()=>request.responseText)() == "") {
-            setTimeout(wait, 100)
+            setTimeout(wait, 200)
         } else {
             const response = JSON.parse(request.responseText)
             if (response.type != "success") return document.querySelector(".main").innerHTML += `<br><br>Error:<br>${request.responseText}`
