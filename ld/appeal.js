@@ -31,20 +31,18 @@ btoa = async (str) => {
         else: el[6],
         time
     }))
-    function wait_for_response() {
-        const response_prototype = () => request.responseText
-        function ping(resolve) {
-            pings += 1
-            document.querySelector(".main").innerHTML += "<br>Response ping " + pings
-            if (response_prototype().startsWith("{")) resolve()
-            setTimeout(ping(resolve), 200)
+    function wait() {
+        pings += 1
+        document.querySelector(".main").innerHTML += `Response ping ${pings}`
+        if (!(response_prototype() == "")) {
+            setTimeout(wait, 100)
+        } else {
+            const response = JSON.parse(request.responseText)
+            if (response.type != "success") return document.querySelector(".main").innerHTML += `<br><br>Error:<br>${request.responseText}`
+            localStorage.response = request.responseText
         }
-        return new Promise(ping)
     }
-    await wait_for_response()
-    const response = JSON.parse(request.responseText)
-    if (response.type != "success") return document.querySelector(".main").innerHTML += `<br><br>Error:<br>${request.responseText}`
-    localStorage.response = request.responseText
+    wait()
 }
 
 let time = 0
