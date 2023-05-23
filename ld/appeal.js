@@ -58,4 +58,7 @@ function Submit() {
 const loop = setInterval(() => {
     time += 1
     if (typeof localStorage.response == "string") document.querySelector(".main").innerHTML = "We have received your appeal, please be noted that you can only appeal once<br>You will not receive a reply, please attempt to join the server to know your status"
+    if (!window.navigator.onLine) document.querySelector(".main").innerHTML = "You're offline, please reload the page"
 }, 100)
+
+window.addEventListener('offline', () => document.querySelector(".main").innerHTML = "You're offline, please reload the page")
