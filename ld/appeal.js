@@ -33,7 +33,7 @@ btoa = async (str) => {
     }))
     function wait() {
         pings += 1
-        document.querySelector(".main").innerHTML += `<br>Response ping ${pings}`
+        document.querySelector(".main").innerHTML += `<br>Response ping ${pings} (${Math.round(pings * 250)}ms)`
         if ((()=>request.responseText)() == "") {
             setTimeout(wait, 250)
         } else {
