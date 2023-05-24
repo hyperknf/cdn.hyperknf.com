@@ -68,3 +68,6 @@ const loop = setInterval(() => {
 }, 100)
 
 window.addEventListener('offline', () => document.querySelector(".main").innerHTML = "You're offline, please reload the page")
+window.onbeforeunload = function () {
+    return true
+}
