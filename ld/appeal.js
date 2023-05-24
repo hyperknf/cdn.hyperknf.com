@@ -31,6 +31,7 @@ btoa = async (str) => {
         else: inputs[6],
         time
     }))
+    time = 0
     function wait() {
         const timeout = 1000 / 3
         pings += 1
