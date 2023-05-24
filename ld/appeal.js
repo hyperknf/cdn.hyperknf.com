@@ -32,10 +32,11 @@ btoa = async (str) => {
         time
     }))
     function wait() {
+        const timeout = 1000 / 3
         pings += 1
-        document.querySelector(".main").innerHTML += `<br>Response ping ${pings} (${Math.round(pings * 250)}ms)`
+        document.querySelector(".main").innerHTML += `<br>Response ping ${pings} (${Math.round(pings * timeout)}ms)`
         if ((()=>request.responseText)() == "") {
-            setTimeout(wait, 250)
+            setTimeout(wait, timeout)
         } else {
             const response = JSON.parse(request.responseText)
             if (response.type != "success") {
