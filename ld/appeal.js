@@ -38,7 +38,13 @@ btoa = async (str) => {
             setTimeout(wait, 250)
         } else {
             const response = JSON.parse(request.responseText)
-            if (response.type != "success") return document.querySelector(".main").innerHTML += `<br><br>Error:<br>${request.responseText}`
+            if (response.type != "success") {
+                if (response.type == "err:invalid_request") return document.querySelector(".main").innerHTML += `<br><br>Error: Invalid request<br>${request.responseText}`
+                if (response.type == "err:user_already_appealed") return document.querySelector(".main").innerHTML += `<br><br>Error: Invalid request<br>${request.responseText}`
+                if (response.type == "err:user_not_banned") return document.querySelector(".main").innerHTML += `<br><br>Error: User with the ID is not banned<br>${request.responseText}`
+                if (response.type == "err:msg_not_sent") return document.querySelector(".main").innerHTML += `<br><br>Error: Message not sent<br>${request.responseText}`
+                return document.querySelector(".main").innerHTML += `<br><br>Error:<br>${request.responseText}`
+            }
             localStorage.response = request.responseText
         }
     }
