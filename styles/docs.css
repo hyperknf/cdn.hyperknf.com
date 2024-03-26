@@ -66,8 +66,12 @@ th {
     background-color: #f8f8f8;
 }
 
-.op {
+.kw {
     color: #007bff;
+}
+
+.op {
+    color: #001eff;
 }
   
 .cm {
