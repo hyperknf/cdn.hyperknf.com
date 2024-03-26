@@ -66,19 +66,19 @@ th {
     background-color: #f8f8f8;
 }
 
-.keyword {
+.op {
     color: #007bff;
 }
   
-.comment {
+.cm {
     color: #888;
     font-style: italic;
 }
   
-.string {
+.str {
     color: #28a745;
 }
   
-.number {
+.num {
     color: #dc3545;
 }
