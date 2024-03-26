@@ -71,7 +71,11 @@ th {
 }
 
 .op {
-    color: #001eff;
+    color: #ff0000;
+}
+
+.id {
+    color: #ffcc00;
 }
   
 .cm {
@@ -80,9 +84,9 @@ th {
 }
   
 .str {
-    color: #28a745;
+    color: #ffb73c;
 }
   
 .num {
-    color: #dc3545;
+    color: #b3ffbb;
 }
