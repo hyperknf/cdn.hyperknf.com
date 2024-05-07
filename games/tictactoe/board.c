@@ -1,10 +1,6 @@
-#include <stdbool.h>
-
 #define EMPTY 0
 #define X -1
 #define O 1
-
-int dummy = 0;
 
 char x() {
     return 'X';
