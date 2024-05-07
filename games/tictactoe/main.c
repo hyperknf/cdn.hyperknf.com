@@ -36,7 +36,13 @@ int main() {
         while (move > 9 || move < 1 || board[move - 1] != EMPTY) move = prompt_move();
         board[move - 1] = X;
 
-        if (++turn >= 9 || won(board)) break;
+        if (++turn >= 9 || won(board)) {
+            printf("Your move: %d\nBoard:\n%s\n\n"
+                , move
+                , format_board(board)
+            );
+            break;
+        }
 
         int cmove = MODE == NORMAL ? basic_move(board, false) : best_move(board, false);
         board[cmove] = O;
@@ -47,7 +53,7 @@ int main() {
         );
     }
 
-    printf("Board:\n%s\n"
+    printf("Final board:\n%s\n"
         , format_board(board)
     );
 
