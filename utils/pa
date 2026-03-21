@@ -1,2 +1,0 @@
-script_key = 'FwgihdJnLL8qbkAoLw3UIxK0cwHkfqlh'
-loadstring(game:HttpGet('https://api.luaauth.com/loader/7epCAsxXS5vgWunbWy6t7VYoUG75kRLn'))()
