@@ -1,0 +1,44 @@
+-- **UNIVERSAL AUTO-REJOIN (ALL GAMES - Delta Compatible)**
+local Players = game:GetService("Players")
+local TeleportService = game:GetService("TeleportService")
+
+local lp = Players.LocalPlayer
+local statusGui = Instance.new("ScreenGui")
+statusGui.Parent = game.CoreGui
+statusGui.Name = "UniversalAutoRejoin"
+
+local statusLabel = Instance.new("TextLabel")
+statusLabel.Parent = statusGui
+statusLabel.Size = UDim2.new(0, 160, 0, 45)
+statusLabel.Position = UDim2.new(0, 10, 1, -55)
+statusLabel.BackgroundColor3 = Color3.new(0,0,0,0.5)
+statusLabel.BackgroundTransparency = 0.2
+statusLabel.Text = "AUTO-REJOIN: ACTIVE"
+statusLabel.TextColor3 = Color3.new(0,1,0)
+statusLabel.TextScaled = true
+statusLabel.Font = Enum.Font.GothamBold
+statusLabel.TextStrokeTransparency = 0
+statusLabel.TextStrokeColor3 = Color3.new(0,0,0)
+
+-- Infinite loop - ALWAYS catches kicks (ALL GAMES)
+spawn(function()
+    while true do
+        task.wait(0.1)
+        local errorPrompt = game.CoreGui.RobloxPromptGui.promptOverlay:FindFirstChild("ErrorPrompt")
+        if errorPrompt then
+            statusLabel.Text = "KICKED → REJOINING " .. game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
+            statusLabel.TextColor3 = Color3.new(1,1,0)
+            
+            task.wait(1)
+            -- UNIVERSAL LOGIC: Works for ALL games
+            if #Players:GetPlayers() <= 1 then
+                TeleportService:Teleport(game.PlaceId, lp)
+            else
+                TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, lp)
+            end
+            break
+        end
+    end
+end)
+
+print("UNIVERSAL Auto-Rejoin ACTIVE - Works in ALL Roblox games!")
